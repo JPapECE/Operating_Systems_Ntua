@@ -1,0 +1,25 @@
+# Combined Makefile for fork-execv.c and char_count.c
+
+CC = gcc
+CFLAGS = -Wall -g
+
+# Targets
+EXERCISE_TARGET = fork-execv
+CHAR_COUNT_TARGET = char_count
+
+all: $(EXERCISE_TARGET) $(CHAR_COUNT_TARGET)
+
+$(EXERCISE_TARGET): $(EXERCISE_TARGET).o
+    $(CC) $(CFLAGS) -o $(EXERCISE_TARGET) $(EXERCISE_TARGET).o
+
+$(CHAR_COUNT_TARGET): $(CHAR_COUNT_TARGET).o
+    $(CC) $(CFLAGS) -o $(CHAR_COUNT_TARGET) $(CHAR_COUNT_TARGET).o
+
+$(EXERCISE_TARGET).o: $(EXERCISE_TARGET).c
+    $(CC) $(CFLAGS) -c $(EXERCISE_TARGET).c
+
+$(CHAR_COUNT_TARGET).o: $(CHAR_COUNT_TARGET).c
+    $(CC) $(CFLAGS) -c $(CHAR_COUNT_TARGET).c
+
+clean:
+    rm -f $(EXERCISE_TARGET) $(EXERCISE_TARGET).o $(CHAR_COUNT_TARGET) $(CHAR_COUNT_TARGET).o
